@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  description: MyText
+  goals: MyText
+  deadline: 2023-04-16
+  team: one
+
+two:
+  title: MyString
+  description: MyText
+  goals: MyText
+  deadline: 2023-04-16
+  team: two

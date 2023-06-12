@@ -1,0 +1,15 @@
+<p style="color: green"><%= notice %></p>
+
+<% if @project.present? %>
+  <%= render @project %>
+  <div>
+    <%= link_to "Edit this project", edit_project_path(@project) %>
+  </div>
+<% else %>
+  <p>Project not found</p>
+<% end %>
+
+<div>
+  <%= link_to "Back to projects", projects_path %>
+  <%= button_to "Destroy this project", @project, method: :delete %>
+</div>

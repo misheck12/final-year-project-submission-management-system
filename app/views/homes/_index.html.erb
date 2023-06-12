@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="jumbotron">
+    <h1>Welcome to our Final Year Project Management System!</h1>
+    <p class="lead">This is a web-based application for managing projects, tasks, and teams effectively.</p>
+    <hr class="my-4">
+    <p>Join us today to streamline your project management workflow.</p>
+    <% if user_signed_in? %>
+      <p class="lead">
+        <%= link_to "Go to Dashboard", dashboard_path, class: "btn btn-primary btn-lg" %>
+      </p>
+    <% else %>
+      <p class="lead">
+        <%= link_to "Sign up now!", new_user_registration_path, class: "btn btn-primary btn-lg" %>
+        <%= link_to "Log in", new_user_session_path, class: "btn btn-secondary btn-lg" %>
+      </p>
+    <% end %>
+  </div>
+</div>
