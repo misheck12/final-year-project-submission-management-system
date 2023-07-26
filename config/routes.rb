@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-
   devise_for :users
 
+  authenticated :user do
+    root to: 'dashboards#index', as: :authenticated_root
+  end
   root to: 'homes#index'
 
   resources :teams
@@ -15,13 +17,8 @@ Rails.application.routes.draw do
   get 'faculty/index'
   get 'faculty/show'
 
-  # Devise routes for users
+  # Devise routes
   devise_scope :user do
     get '/users/sign_out' => 'devise/sessions#destroy'
-  end
-
-  # Custom routes for authenticated users
-  authenticated :user do
-    root to: 'dashboards#index', as: :authenticated_root
   end
 end

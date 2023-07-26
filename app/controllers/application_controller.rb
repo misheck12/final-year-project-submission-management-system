@@ -16,6 +16,10 @@ class ApplicationController < ActionController::Base
     render 'dashboard', locals: { projects: @projects, tasks: @tasks, teams: @teams }
   end
 
+  rescue_from CanCan::AccessDenied do |exception|
+    redirect_to root_url, :alert => exception.message
+  end
+
   protected
 
   def devise_controller_or_active_admin_resource?
