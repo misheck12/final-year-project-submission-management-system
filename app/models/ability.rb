@@ -2,28 +2,18 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    user ||= User.new # guest user (not logged in)
-    
-    if user.admin?
+    user ||= User.new # Guest user
+
+    if user.faculty?
       can :manage, :all
-    elsif user.faculty?
-      can :read, :all
-      can :create, Comment
-      can [:update, :destroy], Comment, user_id: user.id
-      can :manage, [Project, Task]
-      cannot :manage, User
     elsif user.staff?
-      can :read, :all
-      can :manage, [Project, Task, Resource]
-      cannot :manage, User
+      can [:read, :create, :update], Project
+      can :read, Task
     elsif user.student?
-      can :read, :all
-      can :manage, Comment, user_id: user.id
       can :manage, Project, user_id: user.id
-      can :manage, Task, user_id: user.id
-      cannot :manage, User
+      can :manage, Task, project: { user_id: user.id }
     else
-      # Guest user permissions
+      # Guest user can't do anything
     end
   end
 end
