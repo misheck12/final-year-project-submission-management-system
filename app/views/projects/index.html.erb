@@ -26,13 +26,21 @@
           <% end %>
         </td>
         <td>
-          <%= link_to 'Show', project, class: 'btn btn-primary' %>
-          <%= link_to 'Edit', edit_project_path(project), class: 'btn btn-secondary' %>
-          <%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-secondary' %>
+          <% if can? :read, project %>
+            <%= link_to 'Show', project, class: 'btn btn-primary' %>
+          <% end %>
+          <% if can? :update, project %>
+            <%= link_to 'Edit', edit_project_path(project), class: 'btn btn-secondary' %>
+          <% end %>
+          <% if can? :destroy, project %>
+            <%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+          <% end %>
         </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<%= link_to 'New Project', new_project_path, class: 'btn btn-success' %>
+<% if can? :create, Project %>
+  <%= link_to 'New Project', new_project_path, class: 'btn btn-success' %>
+<% end %>
