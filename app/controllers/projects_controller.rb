@@ -1,4 +1,6 @@
 class ProjectsController < ApplicationController
+  before_action :set_project, only: [:show, :edit, :update, :destroy]
+
   def index
     @projects = Project.all
   end
@@ -15,45 +17,39 @@ class ProjectsController < ApplicationController
       redirect_to @project
     else
       flash[:error] = 'Error creating project'
-      render 'new'
+      render :new
     end
   end
 
-  def show
-    @project = Project.find(params[:id])
-  end
+  def show; end
 
-  def edit
-    @project = Project.find(params[:id])
-  end
+  def edit; end
 
   def update
-    @project = Project.find(params[:id])
-
     if @project.update(project_params)
       flash[:success] = "Project updated successfully!"
       redirect_to @project
     else
       flash[:error] = "Error updating project"
-      render 'edit'
+      render :edit
     end
   end
 
   def destroy
-    @project = Project.find(params[:id])
     @project.teams.clear # Remove association between project and teams
     @project.destroy
   
     flash[:success] = "Project deleted successfully!"
     redirect_to projects_path
   end
-  
-  
 
   private
 
-  def project_params
-    params.require(:project).permit(:title, :description, :deadline, :document)
+  def set_project
+    @project = Project.find(params[:id])
   end
 
+  def project_params
+    params.require(:project).permit(:title, :description, :goals, :deadline, :document)
+  end
 end
