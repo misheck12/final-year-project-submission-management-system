@@ -29,9 +29,13 @@
   </table>
 
   <div>
-    <%= link_to "Edit this task", edit_task_path(@task), class: 'btn btn-primary' %>
+    <% if can? :update, @task %>
+      <%= link_to "Edit this task", edit_task_path(@task), class: 'btn btn-primary' %>
+    <% end %>
     <%= link_to "Back to tasks", tasks_path, class: 'btn btn-secondary' %>
-    <%= button_to "Destroy this task", @task, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+    <% if can? :destroy, @task %>
+      <%= button_to "Destroy this task", @task, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+    <% end %>
   </div>
 <% else %>
   <p>Task not found</p>
