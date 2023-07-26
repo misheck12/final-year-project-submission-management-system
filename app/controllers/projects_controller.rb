@@ -17,13 +17,18 @@ class ProjectsController < ApplicationController
       redirect_to @project
     else
       flash[:error] = 'Error creating project'
-      render :new
+      render 'new'
     end
   end
 
-  def show; end
+  def show
+    @document_attached = @project.document.attached?
+    @goals_present = @project.goals.present?
+  end
 
-  def edit; end
+  def edit
+    @
+  end
 
   def update
     if @project.update(project_params)
@@ -31,7 +36,7 @@ class ProjectsController < ApplicationController
       redirect_to @project
     else
       flash[:error] = "Error updating project"
-      render :edit
+      render 'edit'
     end
   end
 
