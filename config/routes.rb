@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-  devise_for :admin_users, ActiveAdmin::Devise.config
+  devise_for :admin_users, ActiveAdmin::Devise.config.merge(path: 'admin')
   ActiveAdmin.routes(self)
-  devise_for :users
+  devise_for :users, path: 'users'
 
   authenticated :user do
     root to: 'dashboards#index', as: :authenticated_root
