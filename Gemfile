@@ -6,6 +6,8 @@ gem 'devise'
 gem 'cancancan'
 gem 'activestorage'
 gem 'activeadmin'
+gem 'sassc-rails'
+
 
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
