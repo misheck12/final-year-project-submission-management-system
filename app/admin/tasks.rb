@@ -1,18 +1,27 @@
 ActiveAdmin.register Task do
+  permit_params :title, :description, :deadline, :project_id, :team_id
 
-  # See permitted parameters documentation:
-  # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
-  #
-  # Uncomment all parameters which should be permitted for assignment
-  #
-  # permit_params :title, :description, :deadline, :project_id, :team_id
-  #
-  # or
-  #
-  # permit_params do
-  #   permitted = [:title, :description, :deadline, :project_id, :team_id]
-  #   permitted << :other if params[:action] == 'create' && current_user.admin?
-  #   permitted
-  # end
-  
+  index do
+    selectable_column
+    id_column
+    column :title
+    column :description
+    column :deadline
+    column :project
+    column :team
+    actions
+  end
+
+  filter :title
+
+  form do |f|
+    f.inputs do
+      f.input :title
+      f.input :description
+      f.input :deadline, as: :datepicker
+      f.input :project, as: :select, collection: Project.all
+      f.input :team, as: :select, collection: Team.all
+    end
+    f.actions
+  end
 end
