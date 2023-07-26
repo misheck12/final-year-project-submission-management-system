@@ -1,5 +1,4 @@
 class Project < ApplicationRecord
-  
   # Project associations
   has_many :users, dependent: :destroy
   has_many :teams, through: :users, foreign_key: :team_id
