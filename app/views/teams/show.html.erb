@@ -1,10 +1,22 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render @team %>
+<% if @team.present? %>
+  <h2><%= @team.name %></h2>
 
-<div>
-  <%= link_to "Edit this team", edit_team_path(@team) %> |
-  <%= link_to "Back to teams", teams_path %>
+  <table class="table table-striped">
+    <tbody>
+      <tr>
+        <th>Name</th>
+        <td><%= @team.name %></td>
+      </tr>
+    </tbody>
+  </table>
 
-  <%= button_to "Destroy this team", @team, method: :delete %>
-</div>
+  <div>
+    <%= link_to "Edit this team", edit_team_path(@team), class: 'btn btn-primary' %>
+    <%= link_to "Back to teams", teams_path, class: 'btn btn-secondary' %>
+    <%= button_to "Destroy this team", @team, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+  </div>
+<% else %>
+  <p>Team not found</p>
+<% end %>
