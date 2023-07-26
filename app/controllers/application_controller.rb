@@ -34,4 +34,12 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :role])
     devise_parameter_sanitizer.permit(:account_update, keys: [:name, :role])
   end
+  
+  def authenticate_admin_user!
+    if admin_user_signed_in?
+      admin_root_path
+    else
+      new_admin_user_session_path
+    end
+  end
 end
