@@ -1,10 +1,31 @@
-<% @projects.each do |project| %>
-  <%= render project %>
-  <p>
-    <%= link_to "Show this project", project %>
-    <% if project.document.attached? %>
-      <%= link_to "Download document", url_for(project.document) %>
+<p style="color: green"><%= notice %></p>
+
+<h1>Projects</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Title</th>
+      <th scope="col">Description</th>
+      <th scope="col">Goals</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @projects.each do |project| %>
+      <tr>
+        <td><%= project.title %></td>
+        <td><%= project.description %></td>
+        <td><%= project.goals %></td>
+        <td>
+          <%= link_to 'Show', project, class: 'btn btn-primary' %>
+          <% if project.document.attached? %>
+            <%= link_to 'Download Document', url_for(project.document), class: 'btn btn-secondary' %>
+          <% end %>
+        </td>
+      </tr>
     <% end %>
-    <p>Goals: <%= project.goals %></p>
-  </p>
-<% end %>
+  </tbody>
+</table>
+
+<%= link_to 'New Project', new_project_path, class: 'btn btn-success' %>
