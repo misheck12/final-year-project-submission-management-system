@@ -8,6 +8,7 @@
       <th scope="col">Title</th>
       <th scope="col">Description</th>
       <th scope="col">Goals</th>
+      <th scope="col">Document</th>
       <th scope="col">Actions</th>
     </tr>
   </thead>
@@ -18,10 +19,16 @@
         <td><%= project.description %></td>
         <td><%= project.goals %></td>
         <td>
-          <%= link_to 'Show', project, class: 'btn btn-primary' %>
           <% if project.document.attached? %>
-            <%= link_to 'Download Document', url_for(project.document), class: 'btn btn-secondary' %>
+            <%= link_to 'Download Document', url_for(project.document), class: 'btn btn-primary' %>
+          <% else %>
+            No Document
           <% end %>
+        </td>
+        <td>
+          <%= link_to 'Show', project, class: 'btn btn-primary' %>
+          <%= link_to 'Edit', edit_project_path(project), class: 'btn btn-secondary' %>
+          <%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-secondary' %>
         </td>
       </tr>
     <% end %>
