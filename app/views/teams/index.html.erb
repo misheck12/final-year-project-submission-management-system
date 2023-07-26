@@ -2,13 +2,25 @@
 
 <h1>Teams</h1>
 
-<div id="teams">
-  <% @teams.each do |team| %>
-    <%= render team %>
-    <p>
-      <%= link_to "Show this team", team %>
-    </p>
-  <% end %>
-</div>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @teams.each do |team| %>
+      <tr>
+        <td><%= team.name %></td>
+        <td>
+          <%= link_to 'Show', team, class: 'btn btn-primary' %>
+          <%= link_to 'Edit', edit_team_path(team), class: 'btn btn-secondary' %>
+          <%= link_to 'Delete', team, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 
-<%= link_to "New team", new_team_path %>
+<%= link_to 'New Team', new_team_path, class: 'btn btn-success' %>
