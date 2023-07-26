@@ -1,14 +1,14 @@
-<div class="container">
+<div class="container py-5">
   <div class="row">
     <div class="col-md-4">
-      <div class="card">
-        <div class="card-header">
+      <div class="card h-100 shadow">
+        <div class="card-header bg-primary text-white">
           <h4>Projects</h4>
         </div>
         <div class="card-body">
-          <ul>
+          <ul class="list-group list-group-flush">
             <% @projects.each do |project| %>
-              <li><%= link_to project.title, project_path(project) %></li>
+              <li class="list-group-item"><%= link_to project.title, project_path(project) %></li>
             <% end %>
           </ul>
         </div>
@@ -16,14 +16,14 @@
     </div>
 
     <div class="col-md-4">
-      <div class="card">
-        <div class="card-header">
+      <div class="card h-100 shadow">
+        <div class="card-header bg-primary text-white">
           <h4>Tasks</h4>
         </div>
         <div class="card-body">
-          <ul>
+          <ul class="list-group list-group-flush">
             <% @tasks.each do |task| %>
-              <li><%= link_to task.name, task_path(task) %></li>
+              <li class="list-group-item"><%= link_to task.name, task_path(task) %></li>
             <% end %>
           </ul>
         </div>
@@ -31,14 +31,14 @@
     </div>
 
     <div class="col-md-4">
-      <div class="card">
-        <div class="card-header">
+      <div class="card h-100 shadow">
+        <div class="card-header bg-primary text-white">
           <h4>Teams</h4>
         </div>
         <div class="card-body">
-          <ul>
+          <ul class="list-group list-group-flush">
             <% @teams.each do |team| %>
-              <li><%= link_to team.name, team_path(team) %></li>
+              <li class="list-group-item"><%= link_to team.name, team_path(team) %></li>
             <% end %>
           </ul>
         </div>
