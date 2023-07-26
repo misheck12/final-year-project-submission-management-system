@@ -17,16 +17,23 @@
         <th>Goals</th>
         <td><%= @project.goals %></td>
       </tr>
+      <tr>
+        <th>Document</th>
+        <td>
+          <% if @project.document.attached? %>
+            <%= link_to 'Download Document', url_for(@project.document), class: 'btn btn-primary' %>
+          <% else %>
+            No Document
+          <% end %>
+        </td>
+      </tr>
     </tbody>
   </table>
 
   <div>
-    <%= link_to "Edit this project", edit_project_path(@project), class: 'btn btn-primary' %>
+    <%= link_to "Edit this project", edit_project_path(@project), class: 'btn btn-secondary' %>
     <%= link_to "Back to projects", projects_path, class: 'btn btn-secondary' %>
     <%= button_to "Destroy this project", @project, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
-    <% if @project.document.attached? %>
-      <%= link_to 'Download Document', url_for(@project.document), class: 'btn btn-secondary' %>
-    <% end %>
   </div>
 <% else %>
   <p>Project not found</p>
