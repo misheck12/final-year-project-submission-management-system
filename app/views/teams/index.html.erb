@@ -14,9 +14,15 @@
       <tr>
         <td><%= team.name %></td>
         <td>
+        <% if can: read, team %>
           <%= link_to 'Show', team, class: 'btn btn-primary' %>
+        <% end %>
+        <% if can: update, team %>
           <%= link_to 'Edit', edit_team_path(team), class: 'btn btn-secondary' %>
+        <% end %>
+        <% if can: destroy, team %>
           <%= link_to 'Delete', team, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+        <% end %>
         </td>
       </tr>
     <% end %>
