@@ -1,5 +1,6 @@
 class Task < ApplicationRecord
   belongs_to :project
+  belongs_to :team
 
   validates :title, presence: true
   validates :description, presence: true
