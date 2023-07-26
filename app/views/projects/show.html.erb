@@ -1,15 +1,18 @@
 <p style="color: green"><%= notice %></p>
 
 <% if @project.present? %>
-  <%= render @project %>
+  <h2><%= @project.title %></h2>
+  <p><%= @project.description %></p>
+  <p><%= @project.goals %></p>
+
   <div>
-    <%= link_to "Edit this project", edit_project_path(@project) %>
+    <%= link_to "Edit this project", edit_project_path(@project), class: 'btn btn-primary' %>
+    <%= link_to "Back to projects", projects_path, class: 'btn btn-secondary' %>
+    <%= button_to "Destroy this project", @project, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+    <% if @project.document.attached? %>
+      <%= link_to 'Download Document', url_for(@project.document), class: 'btn btn-secondary' %>
+    <% end %>
   </div>
 <% else %>
   <p>Project not found</p>
 <% end %>
-
-<div>
-  <%= link_to "Back to projects", projects_path %>
-  <%= button_to "Destroy this project", @project, method: :delete %>
-</div>
