@@ -1,5 +1,4 @@
 class ApplicationController < ActionController::Base
-  before_action :authenticate_user!, unless: :devise_controller_or_active_admin_resource?
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   def home
