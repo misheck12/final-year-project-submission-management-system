@@ -8,6 +8,7 @@
       <th scope="col">Title</th>
       <th scope="col">Description</th>
       <th scope="col">Goals</th>
+      <th scope="col">Deadline</th>
       <th scope="col">Document</th>
       <th scope="col">Actions</th>
     </tr>
@@ -18,6 +19,7 @@
         <td><%= project.title %></td>
         <td><%= project.description %></td>
         <td><%= project.goals %></td>
+        <td><%= project.deadline.strftime("%b %d, %Y") if project.deadline %></td>
         <td>
           <% if project.document.attached? %>
             <%= link_to 'Download Document', url_for(project.document), class: 'btn btn-primary' %>
