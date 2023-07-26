@@ -5,6 +5,7 @@ ruby "3.2.2"
 gem 'devise'
 gem 'cancancan'
 gem 'activestorage'
+gem 'activeadmin'
 
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
