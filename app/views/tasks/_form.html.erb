@@ -1,7 +1,7 @@
-<%= form_with(model: task) do |form| %>
+<%= form_with(model: task, class: "form-container") do |form| %>
   <% if task.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(task.errors.count, "error") %> prohibited this task from being saved:</h2>
+    <div class="alert alert-danger">
+      <h4><%= pluralize(task.errors.count, "error") %> prohibited this task from being saved:</h4>
 
       <ul>
         <% task.errors.each do |error| %>
@@ -11,32 +11,32 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :title, style: "display: block" %>
-    <%= form.text_field :title %>
+  <div class="form-group">
+    <%= form.label :title %>
+    <%= form.text_field :title, class: "form-control" %>
   </div>
 
-  <div>
-    <%= form.label :description, style: "display: block" %>
-    <%= form.text_area :description %>
+  <div class="form-group">
+    <%= form.label :description %>
+    <%= form.text_area :description, class: "form-control" %>
   </div>
 
-  <div>
-    <%= form.label :deadline, style: "display: block" %>
-    <%= form.date_field :deadline %>
+  <div class="form-group">
+    <%= form.label :deadline %>
+    <%= form.date_field :deadline, class: "form-control" %>
   </div>
 
-  <div>
-    <%= form.label :project_id, style: "display: block" %>
-  <%= form.collection_select :project_id, Project.all, :id, :title %>
+  <div class="form-group">
+    <%= form.label :project_id %>
+    <%= form.collection_select :project_id, Project.all, :id, :title, {}, { class: "form-control" } %>
   </div>
 
-  <div>
-    <%= form.label :team_id, style: "display: block" %>
-    <%= form.collection_select :team_id, Team.all, :id, :name %>
+  <div class="form-group">
+    <%= form.label :team_id %>
+    <%= form.collection_select :team_id, Team.all, :id, :name, {}, { class: "form-control" } %>
   </div>
 
-  <div>
-    <%= form.submit %>
+  <div class="form-group">
+    <%= form.submit 'Save Task', class: "btn btn-primary" %>
   </div>
 <% end %>
