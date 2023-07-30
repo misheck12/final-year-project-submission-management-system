@@ -11,7 +11,7 @@ class User < ApplicationRecord
 
 
   # User roles for authorization with Cancancan
-  enum role: { student: 0, faculty: 1, staff: 2 }
+  enum role: { admin: 0, faculty: 1, staff: 2, student: 3}
 
   validates :name, presence: true
   validates :role, presence: true
