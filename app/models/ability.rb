@@ -4,8 +4,12 @@ class Ability
   def initialize(user)
     user ||= User.new # Guest user
 
-    if user.faculty?
+    if user.admin?
       can :manage, :all
+    elsif user.faculty?
+      can :manage, Project
+      can :manage, Task
+      can :manage, Team
     elsif user.staff?
       can [:read, :create, :update], Project
       can :read, Task
