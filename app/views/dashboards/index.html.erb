@@ -7,6 +7,7 @@
         </div>
         <div class="card-body">
           <ul>
+            <!-- List of projects -->
             <% @projects.each do |project| %>
               <li><%= link_to project.title, project_path(project) %></li>
             <% end %>
@@ -22,6 +23,7 @@
         </div>
         <div class="card-body">
           <ul>
+            <!-- List of tasks -->
             <% @tasks.each do |task| %>
               <li><%= link_to task.name, task_path(task) %></li>
             <% end %>
@@ -37,6 +39,7 @@
         </div>
         <div class="card-body">
           <ul>
+            <!-- List of teams -->
             <% @teams.each do |team| %>
               <li><%= link_to team.name, team_path(team) %></li>
             <% end %>
@@ -44,5 +47,22 @@
         </div>
       </div>
     </div>
+
+    <% if current_user.admin? %>
+      <!-- Admin actions -->
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-header">
+            <h4>Admin Actions</h4>
+          </div>
+          <div class="card-body">
+            <!-- Button to create a user -->
+            <%= link_to 'Create User', new_user_registration_path, class: 'btn btn-primary' %>
+            <!-- Button to delete a user (replace 'user' with the actual path or URL to delete a user) -->
+            <%= link_to 'Delete User', user_path(user), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+          </div>
+        </div>
+      </div>
+    <% end %>
   </div>
 </div>
