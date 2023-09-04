@@ -48,20 +48,22 @@
       </div>
     </div>
 
-    <% if current_user.admin? %>
-      <!-- Admin actions -->
-      <div class="col-md-4">
-        <div class="card">
-          <div class="card-header">
-            <h4>Admin Actions</h4>
-          </div>
-          <div class="card-body">
-            <!-- Button to create a user -->
-            <%= link_to 'Create User', new_user_registration_path, class: 'btn btn-primary' %>
-            <!-- Button to delete a user -->
-          </div>
-        </div>
+   <% if current_user.admin? %>
+  <!-- Admin actions -->
+  <div class="col-md-4">
+    <div class="card">
+      <div class="card-header">
+        <h4>Admin Actions</h4>
       </div>
-    <% end %>
+      <div class="card-body">
+        <!-- Button to create a user -->
+        <%= link_to 'Create User', new_user_registration_path, class: 'btn btn-primary' %>
+
+        <!-- Button to delete a user (replace 'user' with the actual path or URL to delete a user) -->
+      </div>
+    </div>
+  </div>
+<% end %>
+
   </div>
 </div>
