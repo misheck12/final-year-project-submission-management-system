@@ -9,7 +9,9 @@ Rails.application.routes.draw do
   resources :teams
   resources :tasks
   resources :projects
-  resources :dashboards
+  resources :dashboards do
+    resources :users 
+    end
 
   # Define your faculty routes here
   get 'faculty/index'
