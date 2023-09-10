@@ -1,7 +1,7 @@
 databases:
   - name: postgres
     ipAllowList: []
-    databaseName: Fyms
+    databaseName: fyms
     user: my_app_render
 
 services:
