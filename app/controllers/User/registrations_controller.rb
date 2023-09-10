@@ -1,7 +1,5 @@
 class User::RegistrationsController < Devise::RegistrationsController
   before_action :configure_sign_up_params, only: [:create]
-  validates :name, presence: true
-  validates :role, presence: true
 
 
   def new
