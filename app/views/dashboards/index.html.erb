@@ -2,9 +2,9 @@
   <div class="row">
     <div class="col-md-4">
       <div class="card h-100 shadow">
-      <div class="card-header" style="background-color: #6c757d; color: #ffffff;">
-      <h4>Projects</h4>
-    </div>
+        <div class="card-header" style="background-color: #6c757d; color: #ffffff;">
+          <h4>Projects</h4>
+        </div>
         <div class="card-body">
           <ul class="list-group list-group-flush">
             <% @projects.each do |project| %>
@@ -45,4 +45,41 @@
       </div>
     </div>
   </div>
+
+  <% if current_user && current_user.admin? %>
+    <div class="row mt-5">
+      <div class="col-md-12">
+        <div class="card shadow">
+          <div class="card-header bg-danger text-white">
+            <h4>Manage Users</h4>
+          </div>
+          <div class="card-body">
+            <table class="table table-bordered table-striped">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Role</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% User.all.each do |user| %>
+                  <tr>
+                    <td><%= user.name %></td> <!-- Assuming you have a 'name' attribute on the User model -->
+                    <td><%= user.email %></td>
+                    <td><%= user.role %></td> <!-- Assuming you have a 'role' attribute on the User model -->
+                    <td>
+                      <%= link_to 'Delete', user_registration_path(user), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' %>
+                    </td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+            <%= link_to 'Clear All Users', clear_users_path, method: :delete, data: { confirm: 'Are you sure you want to delete all users?' }, class: 'btn btn-warning' %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
 </div>
