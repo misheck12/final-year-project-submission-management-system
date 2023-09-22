@@ -2,10 +2,6 @@ class User::RegistrationsController < Devise::RegistrationsController
   before_action :configure_sign_up_params, only: [:create]
   before_action :ensure_admin, only: [:new, :create]
 
-  # Assuming you have a 'name' and 'role' attribute on your User model
-  validates :name, presence: true
-  validates :role, presence: true
-
   def new
     super
   end
