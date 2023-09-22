@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users, controllers: { registrations: 'user/registrations' }
+  devise_for :users
 
   authenticated :user do
     root to: 'dashboards#index', as: :authenticated_root
@@ -18,6 +18,5 @@ Rails.application.routes.draw do
   # Devise routes
   devise_scope :user do
     get '/users/sign_out' => 'devise/sessions#destroy'
-    delete '/users/:id' => 'user/registrations#destroy', as: :user_registration
   end
 end
