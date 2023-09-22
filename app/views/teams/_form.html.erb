@@ -1,27 +1,26 @@
-<%= form_with(model: team) do |form| %>
+<%= form_with(model: team, class: "form-container", local: true) do |form| %>
   <% if team.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(team.errors.count, "error") %> prohibited this team from being saved:</h2>
-
+    <div class="alert alert-danger">
+      <h4><%= pluralize(team.errors.count, "error") %> prohibited this team from being saved:</h4>
       <ul>
-        <% team.errors.each do |error| %>
-          <li><%= error.full_message %></li>
+        <% team.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
         <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
+  <div class="form-group">
+    <%= form.label :name %>
+    <%= form.text_field :name, class: "form-control", placeholder: "Enter team name" %>
   </div>
 
-  <div>
-    <%= form.label :project_id, style: "display: block" %>
-  <%= form.collection_select :project_id, Project.all, :id, :title %>
+  <div class="form-group">
+    <%= form.label :project_id, "Project" %>
+    <%= form.collection_select :project_id, Project.all, :id, :title, { prompt: 'Select a project' }, class: "form-control" %>
   </div>
 
-  <div>
-    <%= form.submit %>
+  <div class="form-group">
+    <%= form.submit team.new_record? ? 'Create Team' : 'Update Team', class: "btn btn-primary" %>
   </div>
 <% end %>
