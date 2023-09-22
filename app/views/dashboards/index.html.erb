@@ -1,7 +1,11 @@
 <div class="container py-5">
+  <% if current_user %>
+    <h3 class="mb-4">Welcome, <%= current_user.name %>!</h3>
+  <% end %>
+
   <div class="row">
     <div class="col-md-4">
-      <div class="card h-100 shadow">
+      <div class="card h-100 shadow animated">
         <div class="card-header" style="background-color: #6c757d; color: #ffffff;">
           <h4>Projects</h4>
         </div>
@@ -16,7 +20,7 @@
     </div>
 
     <div class="col-md-4">
-      <div class="card h-100 shadow">
+      <div class="card h-100 shadow animated">
         <div class="card-header bg-secondary text-white">
           <h4>Tasks</h4>
         </div>
@@ -31,7 +35,7 @@
     </div>
 
     <div class="col-md-4">
-      <div class="card h-100 shadow">
+      <div class="card h-100 shadow animated">
         <div class="card-header bg-secondary text-white">
           <h4>Teams</h4>
         </div>
@@ -84,4 +88,21 @@
       </div>
     </div>
   <% end %>
+
+  <style>
+    /* Simple fade-in animation */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    .animated {
+      animation-name: fadeIn;
+      animation-duration: 1.5s;
+    }
+  </style>
 </div>
