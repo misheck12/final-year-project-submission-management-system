@@ -1,27 +1,46 @@
-<%= form_with(model: team) do |form| %>
-  <% if team.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(team.errors.count, "error") %> prohibited this team from being saved:</h2>
-
-      <ul>
-        <% team.errors.each do |error| %>
-          <li><%= error.full_message %></li>
+<%= form_with(model: task, class: "form-container", local: true) do |form| %>
+  <% if task.errors.any? %>
+    <div class="alert alert-danger">
+      <h4><%= pluralize(task.errors.count, "error") %> prohibited this task from being saved:</h4>
+      <ul class="list-group">
+        <% task.errors.full_messages.each do |message| %>
+          <li class="list-group-item list-group-item-danger"><%= message %></li>
         <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
+  <h3 class="mb-4"><%= task.new_record? ? 'Create New Task' : 'Edit Task' %></h3>
+
+  <div class="form-group">
+    <%= form.label :title %>
+    <%= form.text_field :title, class: "form-control", placeholder: "Enter task title" %>
+    <small class="form-text text-muted">Provide a concise title for the task.</small>
   </div>
 
-  <div>
-    <%= form.label :project_id, style: "display: block" %>
-  <%= form.collection_select :project_id, Project.all, :id, :title %>
+  <div class="form-group">
+    <%= form.label :description %>
+    <%= form.text_area :description, class: "form-control", rows: 5, placeholder: "Describe the task" %>
   </div>
 
-  <div>
-    <%= form.submit %>
+  <div class="form-group">
+    <%= form.label :deadline %>
+    <%= form.date_field :deadline, class: "form-control", placeholder: "Select a deadline" %>
+    <small class="form-text text-muted">When should this task be completed?</small>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :project_id, "Project" %>
+    <%= form.collection_select :project_id, Project.all, :id, :title, { prompt: 'Select a project' }, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :team_id, "Team" %>
+    <%= form.collection_select :team_id, Team.all, :id, :name, { prompt: 'Select a team' }, class: "form-control" %>
+  </div>
+
+  <div class="form-group mt-4">
+    <%= form.submit task.new_record? ? 'Create Task' : 'Update Task', class: "btn btn-primary mr-2" %>
+    <%= link_to 'Cancel', tasks_path, class: 'btn btn-secondary' %>
   </div>
 <% end %>
