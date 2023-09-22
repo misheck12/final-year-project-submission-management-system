@@ -77,7 +77,7 @@
                     <td><%= user.email %></td>
                     <td><%= user.role %></td>
                     <td>
-                      <%= link_to 'Delete', user_path(user), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' %>
+                    <%= link_to 'Delete', user_registration_path(user), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' %>
                     </td>
                   </tr>
                 <% end %>
