@@ -5,6 +5,11 @@ class User::RegistrationsController < Devise::RegistrationsController
   def new
     super
   end
+  def destroy
+    user = User.find(params[:id])
+    user.destroy
+    redirect_to dashboards_path, notice: 'User was successfully deleted.'
+  end
 
   def create
     super
