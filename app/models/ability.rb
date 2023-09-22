@@ -12,11 +12,11 @@ class Ability
       can :manage, Team
     elsif user.staff?
       can [:read, :create, :update], Project
-      can :read, Task
+      can [:read, :update, :create], Task
       can :read, Team
     elsif user.student?
       can [:read, :update, :create, :destroy], Project, user_id: user.id
-      can [:read, :create, :destroy], Task, project: { user_id: user.id }
+      can [:read, :update], Task, project: { user_id: user.id }
     else
       # Guest user can't do anything
     end
