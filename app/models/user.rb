@@ -9,12 +9,19 @@ class User < ApplicationRecord
   has_many :assigned_tasks, class_name: 'Task', foreign_key: 'assignee_id'
   has_many :projects, dependent: :destroy
 
-
   # User roles for authorization with Cancancan
-  enum role: { admin: 0, faculty: 1, staff: 2, student: 3}
+  enum role: { admin: 0, faculty: 1, staff: 2, student: 3 }
 
   validates :name, presence: true
   validates :role, presence: true
   validates :email, uniqueness: true
 
+  # Callbacks
+  before_create :assign_default_role
+
+  private
+
+  def assign_default_role
+    self.role ||= 'admin' if User.count.zero?
+  end
 end
