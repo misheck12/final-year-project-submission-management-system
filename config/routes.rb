@@ -18,5 +18,6 @@ Rails.application.routes.draw do
   # Devise routes
   devise_scope :user do
     get '/users/sign_out' => 'devise/sessions#destroy'
+    delete '/users/:id' => 'user/registrations#destroy', as: :user_registration
   end
 end
