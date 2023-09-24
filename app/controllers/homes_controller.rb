@@ -1,6 +1,5 @@
 class HomesController < ApplicationController
-  load_and_authorize_resource
-  before_action :set_home, only: %i[ show edit update destroy ]
+  before_action :set_home, only: %i[ show ]
 
   # GET /homes or /homes.json
   def index
